@@ -70,3 +70,11 @@ button:active {
   background-color: #460897;
   border-color: #460897;
 }
+
+.loading {
+  color: white;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}

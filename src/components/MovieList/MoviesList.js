@@ -1,19 +1,20 @@
 import React from "react";
 
-import Movie from "../Movie/Movie";
+import MovieItem from "../MovieItem/MovieItem";
 import classes from "./MoviesList.module.css";
 
-const MovieList = (props) => {
+const MovieList = ({ movies }) => {
   return (
     <ul className={classes["movies-list"]}>
-      {props.movies.map((movie) => (
-        <Movie
-          key={movie.id}
-          title={movie.title}
-          releaseDate={movie.releaseDate}
-          openingText={movie.openingText}
-        />
-      ))}
+      {movies.length === 0 ? (
+        <h2>No Movies Present</h2>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <MovieItem key={movie.id} {...movie} />
+          ))}
+        </>
+      )}
     </ul>
   );
 };

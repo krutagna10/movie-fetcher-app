@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import MoviesList from "./components/MovieList/MoviesList";
 
+const url = "https://swapi.dev/api/films";
+
 function App() {
-  const dummyMovies = [
-    {
-      id: 1,
-      title: "Some Dummy Movie",
-      openingText: "This is the opening text of the movie",
-      releaseDate: "2021-05-18",
-    },
-    {
-      id: 2,
-      title: "Some Dummy Movie 2",
-      openingText: "This is the second opening text of the movie",
-      releaseDate: "2021-05-19",
-    },
-  ];
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function fetchMovies() {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Data not found");
+      }
+      const data = await response.json();
+      console.log(data);
+      const transformedMovies = data.results.map((movieData) => {
+        return {
+          id: movieData.episode_id,
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date,
+        };
+      });
+      console.log(transformedMovies[0]);
+      setMovies(transformedMovies);
+    } catch (error) {
+      alert(`${error.name}: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h2 className="loading__text">Loading...</h2>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
       <section>
-        <button>Fetch Movies</button>
+        <button onClick={fetchMovies}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={dummyMovies} />
+        <MoviesList movies={movies} />
       </section>
     </React.Fragment>
   );

@@ -15,6 +15,10 @@
 
 .movie h3 {
   color: #eccf77;
-  margin: 0;
   font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.movie p {
+  margin-top: 0.75rem;
 }

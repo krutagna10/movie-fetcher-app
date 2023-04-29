@@ -1,4 +1,4 @@
-# Movie Fetcher App
+# MovieItem Fetcher App
 
 ### Links
 
