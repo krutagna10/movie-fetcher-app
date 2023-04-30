@@ -3,15 +3,19 @@ import React from "react";
 import MovieItem from "../MovieItem/MovieItem";
 import classes from "./MoviesList.module.css";
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, onDeleteMovie }) => {
   return (
     <ul className={classes["movies-list"]}>
       {movies.length === 0 ? (
-        <h2>No Movies Present</h2>
+        <h2>Found no movies</h2>
       ) : (
         <>
           {movies.map((movie) => (
-            <MovieItem key={movie.id} {...movie} />
+            <MovieItem
+              key={movie.id}
+              {...movie}
+              onDeleteMovie={onDeleteMovie}
+            />
           ))}
         </>
       )}

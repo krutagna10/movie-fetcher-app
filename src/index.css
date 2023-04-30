@@ -78,3 +78,8 @@ button:active {
   place-content: center;
   text-align: center;
 }
+
+.error {
+  color: red;
+  margin-bottom: 0.75rem;
+}
