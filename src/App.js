@@ -3,8 +3,6 @@ import MoviesList from "./components/MovieList/MoviesList";
 import MovieAdd from "./components/MovieAdd/MovieAdd";
 import { useEffect } from "react";
 
-const url = "https://swapi.dev/api/films";
-
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +15,7 @@ function App() {
   async function fetchMovies() {
     setIsLoading(true);
     try {
-      const response = await fetch(url);
+      const response = await fetch("https://swapi.dev/api/films");
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
