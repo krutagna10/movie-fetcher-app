@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
     } catch (error) {
       setError(error.message);
     } finally {
-      setIsLoading(false);
+      setIsLoading(true);
     }
   }
 
